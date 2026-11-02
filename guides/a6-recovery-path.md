@@ -1,6 +1,6 @@
 # A6-RECOVERY-PATH - owner credential recovery runbook
 
-Status: final, 2026-10-28. Implements the "documented recovery path" item of DEV-120 (A6 owner-credential hardening, LAB-THREAT-MODEL revision 3). Owner decisions recorded at the bottom.
+Status: final, 2026-10-28. Implements the "documented recovery path" item of DEV-120 (A6 owner-credential hardening, concepts/threat-model-lab.md revision 3). Owner decisions recorded at the bottom.
 
 ## Scope
 
@@ -42,7 +42,7 @@ Open an incident issue (label `Incident`) once access is restored.
 
 1. Treat as an incident, not a lockout. Sign out all sessions on every provider from a known-clean device.
 2. Revoke all OAuth apps, API tokens, PATs and SSH keys; re-issue only what is needed, short-lived where supported. `tool-github-actions-audit/token_audit.py` enumerates Actions secrets and Cloudflare tokens to drive the rotation list.
-3. Rotate SOPS+age-encrypted secrets reachable through the compromised identity (CONFIG-AND-SECRETS Section 8 rotation procedure).
+3. Rotate SOPS+age-encrypted secrets reachable through the compromised identity (reference/secrets-tiers.md rotation procedure).
 4. Review audit trail (hash-chained event log, GitHub audit log, Cloudflare audit log, Linear history) for actions taken during the compromise window.
 5. Post-incident issue in Linear (label `Incident`) linked to DEV-120.
 

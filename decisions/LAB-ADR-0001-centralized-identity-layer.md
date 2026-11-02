@@ -4,7 +4,7 @@ Status: accepted
 Date: 2026-10-25
 Scope: lab-wide (internal products and client services)
 Foundation decision: D13 (authentication and authorization from day one)
-Resolves: MEGA-PLAN open question Q7
+Resolves: reference/open-questions.md Q7
 
 Provenance: originally authored as `ADR-0002-centralized-auth.md` in the
 career-tracker repository (commit `0ce979d`, 2026-10-25) and promoted here
@@ -65,7 +65,7 @@ What becomes easier:
 What becomes harder:
 
 - Administrative observability is a telemetry problem and must be designed
-  as one; the administrative interface (MEGA-PLAN Section 23) mirrors
+  as one; the administrative interface (foundation Section 23) mirrors
   identity provider status rather than querying one database.
 - Each scope carries its own provider configuration and its own failure
   mode.
@@ -89,9 +89,9 @@ Revisit when:
   applications hold no passwords.
 - Authorization (D13): authorization is still evaluated server-side per
   application; federated identity settles authentication only.
-- Data governance (MEGA-PLAN Section 11): per-tenant isolation gives a
+- Data governance (foundation Section 11): per-tenant isolation gives a
   clean export and handoff path for client offboarding.
-- Audit (MEGA-PLAN Appendix B): `authz.denied` and privilege changes are
+- Audit (reference/audit-events.md): `authz.denied` and privilege changes are
   emitted by the application; authentication events come from the provider's
   audit log.
 
@@ -100,4 +100,4 @@ Revisit when:
 career-tracker has no authentication today (JSON record store, per its
 `AGENTS.md`). When auth lands there it follows this decision, and the
 product-specific provider choice is recorded as a project ADR in that
-repository (numbering per MEGA-PLAN Section 16).
+repository (numbering per foundation Section 16).

@@ -1,7 +1,7 @@
 # Pre-Development Blueprint
 
 > What a DevArts Lab project must produce before the first line of
-> application code. Companion to [MEGA-PLAN.md](MEGA-PLAN.md), which holds
+> application code. Companion to [INDEX](../INDEX.md), which holds
 > the platform research, the foundation decisions D1 to D15, guardrails,
 > governance, cost model, and the master repository layout. This document
 > turns that plan into a per-project production list with document outlines
@@ -13,7 +13,7 @@
 | Audience     | Project leads, lab engineers, delivery agents      |
 | Scope        | Research, design, architecture, planning artifacts |
 | Not in scope | Code, configuration, implementation                |
-| Depends on   | MEGA-PLAN revision 3 (sections cited inline)       |
+| Depends on   | foundation revision 3 (sections cited inline)       |
 
 ---
 
@@ -34,10 +34,10 @@
 
 ## 1. How the phases map to artifacts
 
-The lab's delivery lifecycle (MEGA-PLAN Section 8) has Research, Design,
+The lab's delivery lifecycle (foundation Section 8) has Research, Design,
 Development, Launch, and Operate phases. Pre-development covers Research and
 Design and ends at the Design gate. Each pre-development artifact below is
-durable (stored in the repository under `md/` and mirrored to R2 by the
+durable (stored in the repository under `docs/` and mirrored to R2 by the
 Delivery Workflow) and has an owner, a reviewer, and an exit criterion.
 
 | Blueprint section | Lifecycle phase | Gate that consumes it                     |
@@ -55,17 +55,17 @@ well enough to choose a tier and write a PRD.
 
 | Artifact                | Content                                                                                         | Location                      |
 | ----------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------- |
-| Intake brief            | Client or internal sponsor, goals, success definition, budget band, timeline, known constraints | `md/research/intake.md`       |
-| Market research         | Existing solutions, segments, opportunities, pricing norms                                      | `md/research/market.md`       |
-| Competitor analysis     | Strengths, weaknesses, feature matrix, positioning gaps                                         | `md/research/competitors.md`  |
-| User personas           | Roles, goals, pains, environment, accessibility needs                                           | `md/research/personas.md`     |
-| Requirements draft      | Functional and non-functional requirements with IDs; traceable into PRD and ADRs                | `md/research/requirements.md` |
-| Risk register (initial) | Project risks with likelihood, impact, owner; seeded from MEGA-PLAN Section 18                  | `md/research/risks.md`        |
-| Tier proposal           | T0 to T3 recommendation with justification (MEGA-PLAN Section 5.3)                              | `md/research/tier.md`         |
+| Intake brief            | Client or internal sponsor, goals, success definition, budget band, timeline, known constraints | `docs/research/intake.md`       |
+| Market research         | Existing solutions, segments, opportunities, pricing norms                                      | `docs/research/market.md`       |
+| Competitor analysis     | Strengths, weaknesses, feature matrix, positioning gaps                                         | `docs/research/competitors.md`  |
+| User personas           | Roles, goals, pains, environment, accessibility needs                                           | `docs/research/personas.md`     |
+| Requirements draft      | Functional and non-functional requirements with IDs; traceable into PRD and ADRs                | `docs/research/requirements.md` |
+| Risk register (initial) | Project risks with likelihood, impact, owner; seeded from foundation Section 18                  | `docs/research/risks.md`        |
+| Tier proposal           | T0 to T3 recommendation with justification (foundation Section 5.3)                              | `docs/research/tier.md`         |
 
 Research methods the lab uses: desk research with cited sources, structured
 interviews, Browser Run based scans where rendering is required, and the
-lab's own research agents (MEGA-PLAN Section 15) with human review of every
+lab's own research agents (foundation Section 15) with human review of every
 claim that will reach a client.
 
 ## 3. Phase 2: Design and UX
@@ -74,31 +74,31 @@ Goal: visualize the user journey and the system before implementation.
 
 | Artifact              | Content                                                                                   | Location                  |
 | --------------------- | ----------------------------------------------------------------------------------------- | ------------------------- |
-| PRD                   | Scope, core features, success metrics, non-goals, release criteria; links requirement IDs | `md/design/prd.md`        |
-| User flows            | Step-by-step flows per persona, including agent-assisted and approval flows               | `md/design/user-flows.md` |
-| Wireframes            | Low-fidelity layouts; reference to the design tool file                                   | `md/design/wireframes.md` |
-| Visual design         | High-fidelity direction, brand, accessibility targets                                     | `md/design/visual.md`     |
-| Content and messaging | Voice, key copy, error and empty states, email templates                                  | `md/design/content.md`    |
+| PRD                   | Scope, core features, success metrics, non-goals, release criteria; links requirement IDs | `docs/design/prd.md`        |
+| User flows            | Step-by-step flows per persona, including agent-assisted and approval flows               | `docs/design/user-flows.md` |
+| Wireframes            | Low-fidelity layouts; reference to the design tool file                                   | `docs/design/wireframes.md` |
+| Visual design         | High-fidelity direction, brand, accessibility targets                                     | `docs/design/visual.md`     |
+| Content and messaging | Voice, key copy, error and empty states, email templates                                  | `docs/design/content.md`    |
 
 ## 4. Phase 3: Architecture and tech stack (Cloudflare-native)
 
 Goal: make the deliberate technical decisions and record them. Production
 targets Cloudflare; local development runs the same `workerd` runtime via
-`wrangler dev` or the Vite plugin (MEGA-PLAN Section 6).
+`wrangler dev` or the Vite plugin (foundation Section 6).
 
 | Artifact                  | Content                                                                                                                                                                                 | Location                          |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| Tech stack selection      | Frontend (Static Assets, Vite plugin, or vinext), backend (Workers), agents (Agents SDK), data (D1, DO SQLite, KV, R2, Hyperdrive), each with justification against MEGA-PLAN Section 4 | `md/architecture/tech-stack.md`   |
-| System architecture (C4)  | Context, container, component diagrams; the Cloudflare products appear as containers                                                                                                    | `md/architecture/c4.md`           |
-| Data models               | Entity-relationship diagrams and schemas, each entity mapped to its storage product and data class; D1 split strategy if growth could approach 10 GB                                    | `md/architecture/data-models.md`  |
-| Environment map           | dev, preview, prod: which bindings exist in each, which are isolated, what the `previews` block declares (no production bindings), Access policy per environment                        | `md/architecture/environments.md` |
-| Capacity and limits check | Which MEGA-PLAN Section 13 limits the design approaches, with re-verification date                                                                                                      | `md/architecture/capacity.md`     |
-| Cost estimate             | Requests, CPU, storage, AI spend by month; budget threshold for approval gates (MEGA-PLAN Section 12)                                                                                   | `md/architecture/cost.md`         |
-| ADRs                      | One per foundation decision D1 to D15 plus project-specific decisions from ADR-0016, using MEGA-PLAN Appendix A                                                                         | `md/adr/`                         |
+| Tech stack selection      | Frontend (Static Assets, Vite plugin, or vinext), backend (Workers), agents (Agents SDK), data (D1, DO SQLite, KV, R2, Hyperdrive), each with justification against foundation Section 4 | `docs/architecture/tech-stack.md`   |
+| System architecture (C4)  | Context, container, component diagrams; the Cloudflare products appear as containers                                                                                                    | `docs/architecture/c4.md`           |
+| Data models               | Entity-relationship diagrams and schemas, each entity mapped to its storage product and data class; D1 split strategy if growth could approach 10 GB                                    | `docs/architecture/data-models.md`  |
+| Environment map           | dev, preview, prod: which bindings exist in each, which are isolated, what the `previews` block declares (no production bindings), Access policy per environment                        | `docs/architecture/environments.md` |
+| Capacity and limits check | Which foundation Section 13 limits the design approaches, with re-verification date                                                                                                      | `docs/architecture/capacity.md`     |
+| Cost estimate             | Requests, CPU, storage, AI spend by month; budget threshold for approval gates (foundation Section 12)                                                                                   | `docs/architecture/cost.md`         |
+| ADRs                      | One per foundation decision D1 to D15 plus project-specific decisions from ADR-0016, using guides/adr-template.md                                                                         | `docs/adr/`                         |
 
 ### 4.1 Required foundation ADRs
 
-Every project instantiates these from MEGA-PLAN Section 9 before
+Every project instantiates these from foundation Section 9 before
 development. "Accept default" is a valid decision but must still be
 recorded with the date the defaults were checked.
 
@@ -122,7 +122,7 @@ recorded with the date the defaults were checked.
 
 Numbering: this block is reserved lab-wide. Project-specific ADRs start at
 `ADR-0016`, and decisions binding more than one project are `LAB-ADR`
-entries in the foundation repository. See MEGA-PLAN Section 16.1.
+entries in the foundation repository. See foundation Section 16.1.
 
 ## 5. Phase 4: Agent, workflow, and implementation planning
 
@@ -131,12 +131,12 @@ starts with clean separation.
 
 | Artifact               | Content                                                                                                                                        | Location                           |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| Frontend plan          | UI components, state management, interaction logic, accessibility plan                                                                         | `md/architecture/frontend-plan.md` |
-| Backend plan           | API surface, domain modules, data access patterns, queue consumers                                                                             | `md/architecture/backend-plan.md`  |
-| Agent cards            | One per agent: purpose, tools (MCP servers and scopes), state schema, schedule, approval points, audit events, failure modes                   | `md/agents/<name>.md`              |
-| Workflow definitions   | Each business process as steps, retry policy, gates, idempotency keys, artifact storage; the project's own Delivery Workflow mapping           | `md/architecture/workflows.md`     |
-| API and tool contracts | OpenAPI for HTTP, AsyncAPI for queues and events, MCP tool schemas with least-privilege scope declarations                                     | `md/api/`                          |
-| Test strategy          | Workers Vitest integration coverage, DO and Workflow test APIs, Preview smoke tests, agent evaluation plan (tool-call success, regression set) | `md/architecture/testing.md`       |
+| Frontend plan          | UI components, state management, interaction logic, accessibility plan                                                                         | `docs/architecture/frontend-plan.md` |
+| Backend plan           | API surface, domain modules, data access patterns, queue consumers                                                                             | `docs/architecture/backend-plan.md`  |
+| Agent cards            | One per agent: purpose, tools (MCP servers and scopes), state schema, schedule, approval points, audit events, failure modes                   | `docs/agents/<name>.md`              |
+| Workflow definitions   | Each business process as steps, retry policy, gates, idempotency keys, artifact storage; the project's own Delivery Workflow mapping           | `docs/architecture/workflows.md`     |
+| API and tool contracts | OpenAPI for HTTP, AsyncAPI for queues and events, MCP tool schemas with least-privilege scope declarations                                     | `docs/api/`                          |
+| Test strategy          | Workers Vitest integration coverage, DO and Workflow test APIs, Preview smoke tests, agent evaluation plan (tool-call success, regression set) | `docs/architecture/testing.md`       |
 
 Agent evaluation note: evaluation criteria are project-specific (for
 example latency for a voice agent, extraction accuracy for a document
@@ -145,29 +145,29 @@ threshold.
 
 ## 6. Phase 5: Guardrails, governance, and security planning
 
-Goal: design guardrails in, not bolt them on. Each row maps to MEGA-PLAN
+Goal: design guardrails in, not bolt them on. Each row maps to foundation
 Sections 10, 11, and 14.
 
 | Artifact                     | Content                                                                                                                                         | Location                          |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| Data classification register | Every dataset with class (public, internal, client-confidential, regulated), owner, storage product, residency note                             | `md/governance/classification.md` |
-| Retention schedule           | Period per class; deletion Workflow design; platform retention facts (Logs 7 days, Workflow state 30 days, Queues 14 days, Time Travel 30 days) | `md/governance/retention.md`      |
-| Audit event catalog          | MEGA-PLAN Appendix B baseline plus project events; which Worker emits each                                                                      | `md/governance/audit-events.md`   |
-| Guardrail assignment         | For each MEGA-PLAN Section 10 guardrail: the mechanism, the configuration owner, the verification step                                          | `md/governance/guardrails.md`     |
-| Threat model                 | MEGA-PLAN Section 14 table extended with project-specific threats and controls                                                                  | `md/security/threat-model.md`     |
-| Access and identity plan     | Access applications and policies (Previews, admin, internal), token scopes for CI and agents, end-user auth decision                            | `md/security/access.md`           |
-| Secret inventory             | Names, owners, storage (Worker secret or Secrets Store), rotation cadence; never values                                                         | `md/security/secrets.md`          |
-| AI data policy               | Which prompt and response classes may be logged in AI Gateway; DLP and Guardrails settings; provider retention choices                          | `md/governance/ai-data.md`        |
+| Data classification register | Every dataset with class (public, internal, client-confidential, regulated), owner, storage product, residency note                             | `docs/governance/classification.md` |
+| Retention schedule           | Period per class; deletion Workflow design; platform retention facts (Logs 7 days, Workflow state 30 days, Queues 14 days, Time Travel 30 days) | `docs/governance/retention.md`      |
+| Audit event catalog          | reference/audit-events.md baseline plus project events; which Worker emits each                                                                      | `docs/governance/audit-events.md`   |
+| Guardrail assignment         | For each foundation Section 10 guardrail: the mechanism, the configuration owner, the verification step                                          | `docs/governance/guardrails.md`     |
+| Threat model                 | foundation Section 14 table extended with project-specific threats and controls                                                                  | `docs/security/threat-model.md`     |
+| Access and identity plan     | Access applications and policies (Previews, admin, internal), token scopes for CI and agents, end-user auth decision                            | `docs/security/access.md`           |
+| Secret inventory             | Names, owners, storage (Worker secret or Secrets Store), rotation cadence; never values                                                         | `docs/security/secrets.md`          |
+| AI data policy               | Which prompt and response classes may be logged in AI Gateway; DLP and Guardrails settings; provider retention choices                          | `docs/governance/ai-data.md`        |
 
 ## 7. Document locations in the master layout
 
-The layout is defined once in MEGA-PLAN Section 16. The pre-development
+The layout is defined once in foundation Section 16. The pre-development
 artifacts occupy these directories:
 
 ```text
-md/
-  MEGA-PLAN.md            adopted revision or pointer
-  PRE-DEVELOPMENT.md      this blueprint with the project's filled checklist
+docs/
+  foundation.md            adopted revision or pointer
+  predevelopment.md      this blueprint with the project's filled checklist
   adr/                    ADR-0001 to ADR-0015 (foundation decisions) plus project ADRs from ADR-0016
   research/               intake, market, competitors, personas, requirements, risks, tier
   design/                 prd, user-flows, wireframes, visual, content
@@ -182,25 +182,25 @@ md/
 
 Repository root files (`AGENTS.md`, `README.md`, `REPO_INDEX.md`,
 `LICENSE`, `SECURITY.md`, `.gitignore`, `.dev.vars.example`,
-`wrangler.jsonc`) are listed in MEGA-PLAN Section 16 and created by the
+`wrangler.jsonc`) are listed in foundation Section 16 and created by the
 scaffold.
 
 ## 8. Document outlines
 
 Minimum headings for the artifacts that most often come back incomplete.
 
-### 8.1 PRD (`md/design/prd.md`)
+### 8.1 PRD (`docs/design/prd.md`)
 
 1. Problem statement and sponsor
 2. Goals and success metrics (measurable, dated)
 3. Personas served
 4. Scope: features in, features out, non-goals
-5. Requirement traceability (IDs from `md/research/requirements.md`)
+5. Requirement traceability (IDs from `docs/research/requirements.md`)
 6. Tier and foundation defaults accepted or deviated (link ADRs)
 7. Release criteria and launch definition
 8. Open questions
 
-### 8.2 C4 (`md/architecture/c4.md`)
+### 8.2 C4 (`docs/architecture/c4.md`)
 
 1. System context: users, external systems, AI providers, client systems
 2. Containers: each Cloudflare product in use as a container; data flows;
@@ -209,13 +209,13 @@ Minimum headings for the artifacts that most often come back incomplete.
    agents, queues
 4. Deployment view: dev, preview, prod; Previews isolation noted per binding
 
-### 8.3 Data classification register (`md/governance/classification.md`)
+### 8.3 Data classification register (`docs/governance/classification.md`)
 
 Table columns: dataset, description, class, owner, storage product,
 tenant-scoped (yes or no), residency requirement, retention period, audit
 events emitted, AI exposure (may be sent to a model: yes or no).
 
-### 8.4 Agent card (`md/agents/<name>.md`)
+### 8.4 Agent card (`docs/agents/<name>.md`)
 
 1. Purpose and population (lab operations or delivery)
 2. Trigger: user, schedule, event, webhook, email
@@ -227,28 +227,28 @@ events emitted, AI exposure (may be sent to a model: yes or no).
 8. Failure modes and recovery (resume, retry, escalate)
 9. Evaluation metrics and fixtures
 
-### 8.5 Environment map (`md/architecture/environments.md`)
+### 8.5 Environment map (`docs/architecture/environments.md`)
 
 Table columns: binding, dev (local), preview (isolated or shared, resource
 name), prod (resource name), notes. Followed by: Access policy per
 environment, Workflow instance ID prefixing scheme, queue consumer testing
 approach (consumers cannot target Previews).
 
-### 8.6 Threat model (`md/security/threat-model.md`)
+### 8.6 Threat model (`docs/security/threat-model.md`)
 
 Table columns: threat, vector, asset and data class, foundation control
-(MEGA-PLAN Section 14), project control, owner, verification. Followed by
+(foundation Section 14), project control, owner, verification. Followed by
 accepted risks with sign-off.
 
 ## 9. Pre-development exit criteria
 
 A project may enter Development when all of the following are true and
-recorded in the Design gate approval (MEGA-PLAN Section 8):
+recorded in the Design gate approval (foundation Section 8):
 
 1. PRD approved with measurable success metrics.
 2. Tier recorded; every product outside the tier has an ADR.
 3. ADR-0001 to ADR-0015 exist (accepted default or deviation), with the date
-   the MEGA-PLAN defaults and relevant limits were re-verified.
+   the foundation defaults and relevant limits were re-verified.
 4. C4 and data models committed, every entity mapped to a storage product
    and a data class.
 5. Environment map complete; `previews` block declares no production
@@ -270,7 +270,7 @@ recorded in the Design gate approval (MEGA-PLAN Section 8):
 
 ## 10. Tier-based minimum sets
 
-Not every project needs every artifact. The tier (MEGA-PLAN Section 5.3)
+Not every project needs every artifact. The tier (foundation Section 5.3)
 sets the minimum.
 
 | Artifact group                              | T0                  | T1  | T2  | T3  |
@@ -298,6 +298,6 @@ sets the minimum.
 
 | Revision | Date       | Change                                                                                                                                                                                                                 |
 | -------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1        | 2026-10-21 | Initial blueprint aligned with MEGA-PLAN revision 1                                                                                                                                                                    |
-| 2        | 2026-10-21 | Aligned with MEGA-PLAN revision 2: single master layout under `md/`, ADR-0001 to ADR-0010, document outlines, tier minimum sets, consistent numbering, ASCII punctuation                                               |
-| 3        | 2026-10-26 | Aligned with MEGA-PLAN revision 3: required ADR set extended to ADR-0001 to ADR-0015 for decisions D11 to D15, reserved-block numbering rule with project ADRs from ADR-0016 and lab-wide decisions as LAB-ADR entries |
+| 1        | 2026-10-21 | Initial blueprint aligned with foundation revision 1                                                                                                                                                                    |
+| 2        | 2026-10-21 | Aligned with foundation revision 2: single master layout under `docs/`, ADR-0001 to ADR-0010, document outlines, tier minimum sets, consistent numbering, ASCII punctuation                                               |
+| 3        | 2026-10-26 | Aligned with foundation revision 3: required ADR set extended to ADR-0001 to ADR-0015 for decisions D11 to D15, reserved-block numbering rule with project ADRs from ADR-0016 and lab-wide decisions as LAB-ADR entries |

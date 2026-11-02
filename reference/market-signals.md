@@ -1,4 +1,4 @@
-# MARKET-SIGNALS.md
+# reference/market-signals.md.md
 
 > Lab-wide market alignment contract, revision 1.
 > What hiring managers, execs, and partners measurably value; what the lab

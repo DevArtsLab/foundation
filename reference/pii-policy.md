@@ -1,6 +1,6 @@
 # PII in Repositories: Placeholders, Registries, and Sentinels
 
-> Companion to [MEGA-PLAN.md](MEGA-PLAN.md), expanding the PII rule in D14
+> Companion to [INDEX](../INDEX.md), expanding the PII rule in D14
 > and Section 11. Covers how committed content references personal data
 > without ever containing it, and how that discipline is enforced.
 > Documentation only; no implementation.
@@ -10,7 +10,7 @@
 | Status       | Living document, revision 1                                                                     |
 | Audience     | Lab engineers, agents, future operators under a different brand                                 |
 | Scope        | PII in committed documentation and research content: references, registries, detection, history |
-| Not in scope | Secrets and credentials (CONFIG-AND-SECRETS); datastore classification per project (Section 11) |
+| Not in scope | Secrets and credentials (see `store-layout.md`, `secrets-tiers.md`); datastore classification per project (Section 11) |
 | Source       | Working system in the waykeeper repository, operating since 2026-10-04; generalized here        |
 
 ---
@@ -47,7 +47,7 @@ principle the lab already applies to secrets, extended to personal data:
 **repositories hold references, never values.** Committed content carries
 placeholders; a committed registry describes each placeholder; a gitignored
 overlay maps placeholders to real values held in the operator-owned store
-described in [CONFIG-AND-SECRETS.md](CONFIG-AND-SECRETS.md) Section 4.
+described in [store-layout.md](store-layout.md).
 
 This document records that mechanism as a lab convention, so every
 repository intended for the documentation platform, or for public
@@ -66,7 +66,7 @@ generalized.
 | T3 Model boundary | Providers only ever see placeholders                               | A firewall pass on every prompt and tool result before the model call; zero-data-retention provider settings where offered; local inference for the most sensitive steps (D15) |
 
 This document specifies T1 in full and the prompt side of T3. T2 is
-declared per project in `md/governance/classification.md` and the project
+declared per project in `docs/governance/classification.md` and the project
 threat model (Section 14), because the datastore shape varies.
 
 ## 3. The placeholder contract
@@ -83,7 +83,7 @@ Three files make the contract work, following the waykeeper layout:
 | -------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `config/pii-registry.yaml`       | Committed   | One entry per token: entity type, masked hint (first character plus asterisks, never more), status, every `file:line` redacted from, notes. Never a raw value |
 | `config/pii-registry.local.yaml` | Gitignored  | Token-to-field map into the master store; a literal value only as an explicit, commented override                                                             |
-| The master store                 | Outside git | `config/profiles/` in the workspace-root config store (CONFIG-AND-SECRETS Section 4); the single source of truth for real values                              |
+| The master store                 | Outside git | `config/profiles/` in the workspace-root config store (see store-layout.md); the single source of truth for real values                              |
 
 Output contract, observed in waykeeper and adopted verbatim:
 
@@ -155,7 +155,7 @@ directory as the specs, updated on every run or scope change. Waykeeper's
 ## 6. Detection tooling
 
 Tooling evaluated and adopted in waykeeper; facts here decay per
-MEGA-PLAN Section 2.2 and must be re-verified at adoption time.
+reference/research-policy.md and must be re-verified at adoption time.
 
 | Layer      | Tool                                                                                                | Notes                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -188,7 +188,7 @@ Operating rules adopted from that incident:
 2. Scrubbing uses `git filter-repo --replace-text` followed by a force
    push, and the scrub is recorded in the sentinel run log.
 3. A scrubbed value is still treated as exposed. For credential-class
-   material the answer is rotation, not scrubbing (CONFIG-AND-SECRETS
+   material the answer is rotation, not scrubbing (see reference/secrets-tiers.md
    remediation sequence). For personal data, scrub plus assume-breached is
    the honest posture.
 4. The real fix is sequence: scan on add and on edit from the first
