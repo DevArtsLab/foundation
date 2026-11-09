@@ -26,7 +26,7 @@ DevArts Lab is a small lab running many repositories. The platform doctrine is C
 2. **End user / admin / machine identity planes**: kept separate. End-user auth is IdP-first with no shared credential database, admin access goes through Cloudflare Access, and machines use scoped API tokens and OAuth MCP [charter D13, LAB-ADR-0001]. Authorization is server-side only, and tenant isolation is structural (a per-tenant DO or database) [charter D13].
 3. **Repository to secret stores**: repositories hold secret references, never values. One store per plane: SOPS+age as the source of truth, synced one way to Worker secrets / Secrets Store, GitHub Actions secrets and Devin secrets [charter config-principles 3, secrets-tiers 7.3].
 4. **Untrusted content to agents/models**: web pages, documents, emails and repository content fed to a model [charter 14].
-5. **Developer machine**: local tools run as the user, with access to `~/.agents/`, provider configs, MCP tokens and the `config/` PII store (local, gitignored) [LAB_INDEX].
+5. **Developer machine**: local tools run as the user, with access to `$AGENT_CONFIG_HOME/`, provider configs, MCP tokens and the `config/` PII store (local, gitignored) [LAB_INDEX].
 6. **Supply chain**: npm/pnpm, PyPI, GitHub Actions, Homebrew tap, install scripts.
 7. **Agents and their tooling**: lab and delivery agents authenticate with scoped MCP and API tokens, read and write repositories, and act unsupervised; skills and MCP servers are themselves supply-chain items (pinned, reviewed) [charter 10, 14]; agent actions must be auditable [charter Appendix B]; facts an agent derives from untrusted input are quarantined until promoted [charter 14].
 
@@ -123,4 +123,4 @@ Proposal 1 of revision 2 (owner-credential hardening for A6) was accepted with a
 Items that need the same explicit confirmation the 2026-10-27 decisions received:
 
 1. **Findings ranked by blast radius.** Equal asset weighting governs whether a finding counts (owner decision, unchanged). A blast-radius estimate per finding would order the remediation queue without reopening the weighting question. Accept or reject.
-2. **Owner device attestation.** The `config/` store and `~/.agents/` give one machine lab-wide reach; full-disk encryption and a screen-lock policy verified periodically. Accept or reject.
+2. **Owner device attestation.** The `config/` store and `$AGENT_CONFIG_HOME/` give one machine lab-wide reach; full-disk encryption and a screen-lock policy verified periodically. Accept or reject.

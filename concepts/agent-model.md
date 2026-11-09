@@ -51,7 +51,7 @@ Repository: <https://github.com/docker/docker-agent> (formerly
   done, retired) updated on every run; the registry carries into
   development. The waykeeper `research/AGENTS.md` is the worked example.
 - Skills resolve by name from the user-global skills directory
-  (`~/.agents/skills/`), never by vendoring copies into repositories. A
+  (`$AGENT_CONFIG_HOME/skills/`), never by vendoring copies into repositories. A
   repository declares the skills it needs in `AGENTS.md`. Installed copies
   under tool-specific directories (for example `~/.claude/skills/`) are
   generated downstream artifacts, not a second source of truth, and drift
