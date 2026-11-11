@@ -12,7 +12,7 @@ Why the system is this way: `doctrine`, `agent-model`, `config-model`, app threa
 
 ## reference/
 
-Facts and contracts: catalog, tiers, limits, cost, guardrails, layouts, contracts, registers, glossary, open questions, risks, roadmap, market signals, audit events, admin interface, policies.
+Facts and contracts: catalog, tiers, limits, cost, guardrails, layouts, contracts, registers, glossary, open questions, risks, roadmap, market signals, audit events, admin interface, policies, component sources, upstream resource register (`upstream-sources.yaml`; cite as `upstream:<id>`).
 
 ## guides/
 

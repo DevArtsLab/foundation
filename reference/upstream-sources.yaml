@@ -1,0 +1,36 @@
+# Upstream resource register. One entry per external resource the lab
+# builds with or imports from. Cite as upstream:<id>; locators, names,
+# licenses, terms, verdicts live only here, never restated in prose.
+# Rules: reference/component-sources.md. Log: reference/source-register.md.
+# Fields: name, kind, repo or url, license, terms (allowed|forbidden),
+# verdict (import|optional|never), plus entry-specific locators (cdn,
+# docs.*). Per-source analysis: ../research/component-sources/. Decaying
+# facts (stars, push dates) stay in research notes or the log.
+sources:
+  shadcn-ui:
+    name: shadcn/ui
+    kind: component-system
+    repo: shadcn-ui/ui
+    url: https://ui.shadcn.com
+    license: MIT
+    terms: allowed
+    verdict: import
+    docs:
+      directory: https://ui.shadcn.com/docs/directory
+      authentication: https://ui.shadcn.com/docs/registry/authentication
+      namespaces: https://ui.shadcn.com/docs/registry/namespace
+  admincn-free:
+    name: shadcn-studio AdminCN Free
+    kind: component-corpus
+    repo: shadcnstudio/shadcn-nextjs-admincn-admin-template-free
+    license: MIT
+    terms: allowed
+    verdict: import
+    cdn: cdn.shadcnstudio.com
+  track-landing-free:
+    name: shadcn-studio Track Landing Free
+    kind: component-corpus
+    repo: shadcnstudio/shadcn-nextjs-track-landing-page-free
+    license: MIT
+    terms: allowed
+    verdict: optional

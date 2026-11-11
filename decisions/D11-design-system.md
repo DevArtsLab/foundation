@@ -1,6 +1,6 @@
 # D11. Design system and component distribution
 
-Default: shadcn/ui on Tailwind CSS. Components are copied into the
+Default: shadcn/ui (`upstream:shadcn-ui`) on Tailwind CSS. Components are copied into the
 repository and owned by the lab, not consumed as a black-box dependency, so
 every app can evolve them without forking a vendor.
 
