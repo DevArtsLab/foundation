@@ -10,9 +10,10 @@
 
 ### 15.2 Shared contracts
 
-- Every agent has a written card in `docs/agents/<name>.md`: purpose, tools
-  (MCP servers and scopes), state schema, approval points, audit events,
-  failure modes.
+- Every agent has a written card in `docs/agents/<name>.md`: owner (named
+  person), purpose, tools (MCP servers and scopes), limits (steps, seconds,
+  spend), shutoff (mechanism and procedure), state schema, approval points,
+  check method (evals or verification), audit events, failure modes.
 - Agents never hold the only copy of state (Principle 3).
 - Agents reach external systems only through MCP servers or bindings;
   never through ad hoc HTTP with embedded credentials.
