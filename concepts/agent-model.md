@@ -12,8 +12,9 @@
 
 - Every agent has a written card in `docs/agents/<name>.md`: owner (named
   person), purpose, tools (MCP servers and scopes), limits (steps, seconds,
-  spend), shutoff (mechanism and procedure), state schema, approval points,
-  check method (evals or verification), audit events, failure modes.
+  spend), shutoff (mechanism and procedure), state schema, resolution
+  domains it may handle autonomously (15.7), approval points, check method
+  (evals or verification), audit events, failure modes.
 - Agents never hold the only copy of state (Principle 3).
 - Agents reach external systems only through MCP servers or bindings;
   never through ad hoc HTTP with embedded credentials.
@@ -87,3 +88,36 @@ ingress that verifies, normalizes, and forwards.
 - Every public-facing agent gets an agent card (15.2) and its own threat
   rows under Section 14. First implementation: the devartslab.com
   concierge in devartslab-site (DEV-133).
+
+### 15.7 Escalation contract
+
+Support resolution runs as a control plane, not a prompt instruction. Every
+agent card declares the resolution domains it may handle autonomously;
+anything outside them escalates by contract, never by improvisation.
+
+- Resolution domains: `SEC_TRUST`, `LEGAL_COMP`, `TECH_ENG`, `VENDOR_OPS`,
+  `FIN_BILLING`, `HR_INTERNAL`.
+- Routing priority: `SEC_TRUST` and `LEGAL_COMP` first, then `TECH_ENG`,
+  `VENDOR_OPS`, `FIN_BILLING`, `HR_INTERNAL`. A technical defect causing a
+  downstream error routes to `TECH_ENG` first; dependent domains are
+  flagged as follow-on tasks.
+- Each domain routes to a named director role, never a person literal
+  (Principle 12). In a one-person lab every role resolves to the owner; as
+  departments form, a role resolves to a director or to a deterministic
+  department agent governed by this same card contract.
+- Escalation payload: `resolution_domain`, `severity`
+  (`LOW` | `MEDIUM` | `HIGH` | `CRITICAL`), `operational_blocker` (why the
+  agent's own authority ends), `evidence` (logs, transaction IDs,
+  reproduction context gathered before escalation).
+- The system of record is Linear: an escalation creates or updates an
+  issue with the matching Track and Domain labels; `SEC_TRUST`
+  escalations also carry the `Incident` label (per the incident
+  convention in `guides/a6-recovery-path.md`).
+- After escalating, the agent records the escalation in durable state and
+  halts that line of work: no Tier 1 retries, no workarounds, no
+  acknowledgment of liability.
+- User-facing communication states which domain owns the issue and the
+  issue key as reference; internal routing codes and gate rules are never
+  exposed.
+- Context passed downstream is sanitized and minimal: only the diagnostic
+  evidence the receiving role needs.
