@@ -4,7 +4,7 @@
 # Rules: reference/component-sources.md. Log: reference/source-register.md.
 # Fields: name, kind, repo or url, license, terms (allowed|forbidden),
 # verdict (import|optional|never), plus entry-specific locators (cdn,
-# docs.*). Per-source analysis: ../research/component-sources/. Decaying
+# docs.*). Per-source analysis: ../research/foundation/component-sources/. Decaying
 # facts (stars, push dates) stay in research notes or the log.
 sources:
   shadcn-ui:

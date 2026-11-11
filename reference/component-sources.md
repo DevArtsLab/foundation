@@ -10,7 +10,7 @@ Convention: sources are upstream; components are imported, owned, and
 evolved by the lab. Upstream is never a runtime dependency.
 
 Per-source evaluation notes live outside platform docs:
-`../research/component-sources/`.
+`../research/foundation/component-sources/`.
 
 ## Evaluation checklist
 

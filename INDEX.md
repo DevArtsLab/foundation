@@ -23,7 +23,7 @@ Procedures: `project-start`, `predevelopment`, `adr-template`, `a6-recovery-path
 - New fact -> exactly one file. Link it; do not paraphrase it.
 - Decision change -> edit its `D##`/ADR file; supersede, do not fork.
 - `Section N` and `D##` are stable IDs; use them as references.
-- Re-verify decaying facts per `reference/research-policy.md`; log passes in `reference/source-register.md`.
+- Re-verify decaying facts per `reference/research-policy.md`; log passes in `../research/foundation/source-verification-log.md`.
 
 ## Section map (legacy monolith IDs -> files)
 

@@ -18,8 +18,8 @@ See [INDEX.md](INDEX.md).
 ## Status
 
 - Facts decay per [reference/research-policy.md](reference/research-policy.md);
-  sources and verification log in
-  [reference/source-register.md](reference/source-register.md).
+  source URLs in [reference/source-register.md](reference/source-register.md),
+  pass journal in `../research/foundation/source-verification-log.md`.
 - License: undecided ([reference/open-questions.md](reference/open-questions.md) Q4).
 - Work tracked in Linear (DevArts Lab workspace).
 

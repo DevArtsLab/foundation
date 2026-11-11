@@ -26,5 +26,6 @@ different rates and must be re-verified on the stated cadence:
 | Product names                  | Browser Rendering to Browser Run, Pipelines to Basin, Sandbox naming      | On encounter                              |
 | Deprecations                   | AI Gateway Unified API for single-model calls, Pages for new projects     | Quarterly                                 |
 
-Verification is a Section 22 update plus a note in the revision log at the
-end of this file. A refinement pass should also be logged in Linear.
+Verification is a Section 22 register update plus a pass note in
+`../research/foundation/source-verification-log.md`. Log the refinement in Linear
+as well.
