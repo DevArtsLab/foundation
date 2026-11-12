@@ -20,7 +20,7 @@ See [INDEX.md](INDEX.md).
 - Facts decay per [reference/research-policy.md](reference/research-policy.md);
   source URLs in [reference/source-register.md](reference/source-register.md),
   pass journal in `../research/foundation/source-verification-log.md`.
-- License: undecided ([reference/open-questions.md](reference/open-questions.md) Q4).
+- License: CC-BY-4.0 ([LICENSE](LICENSE)).
 - Work tracked in Linear (DevArts Lab workspace).
 
 ## Conventions
