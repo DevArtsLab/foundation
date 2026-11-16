@@ -16,7 +16,7 @@ Facts and contracts: catalog, tiers, limits, cost, guardrails, layouts (`repo-la
 
 ## guides/
 
-Procedures: `project-start`, `predevelopment`, `adr-template`, `a6-recovery-path`, `security-txt`.
+Procedures: `project-start`, `predevelopment`, `adr-template`, `a6-recovery-path`, `security-txt`, `media-asset-hosting`.
 
 ## Rules
 
